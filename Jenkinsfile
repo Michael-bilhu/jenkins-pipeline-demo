@@ -2,21 +2,22 @@ pipeline {
     agent any
 
     stages {
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/Michael-bilhu/jenkins-pipeline-demo'
+            }
+        }
+
         stage('Build') {
             steps {
-                echo 'Building the app...'
+                echo 'Running build.sh from GitHub...'
+                bat 'build.bat' // for Windows users
             }
         }
 
-        stage('Test') {
+        stage('Complete') {
             steps {
-                echo 'Running tests...'
-            }
-        }
-
-        stage('Deploy') {
-            steps {
-                echo 'Deploying the app!'
+                echo 'CI/CD Pipeline Complete ✅'
             }
         }
     }
