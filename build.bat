@@ -1,3 +1,5 @@
 @echo off
-echo this is along-running build..
-timeout  /t 180> nul REM = wait 3 minutes (stimulate delay)
+echo This is a long-running build...
+REM Wait for 2 minutes (simulate slow build)
+ping 127.0.0.1 -n 120 > nul
+echo Done!
