@@ -1,19 +1,22 @@
 pipeline {
     agent any
 
+    parameters {
+        choice(name: 'DEPLOY_ENV', choices: ['dev', 'stage', 'prod'], description: 'Choose deployment environment')
+    }
+
     stages {
         stage('Build') {
             steps {
-                echo 'Running build.bat from GitHub...'
+                echo "Building for environment: ${params.DEPLOY_ENV}"
                 bat 'build.bat'
             }
         }
 
-        stage('Complete') {
+        stage('Deploy') {
             steps {
-                echo 'CI/CD Pipeline Complete ✅'
+                echo "Deploying to ${params.DEPLOY_ENV} environment"
             }
         }
     }
 }
-
