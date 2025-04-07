@@ -1,11 +1,11 @@
 pipeline {
     agent any
 
-
+    stages {
         stage('Build') {
             steps {
-                echo 'Running build.sh from GitHub...'
-                bat 'build.bat' // for Windows users
+                echo 'Running build.bat from GitHub...'
+                bat 'build.bat'
             }
         }
 
