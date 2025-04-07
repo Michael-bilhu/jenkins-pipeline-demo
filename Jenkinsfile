@@ -2,20 +2,29 @@ pipeline {
     agent any
 
     parameters {
-        choice(name: 'DEPLOY_ENV', choices: ['dev', 'stage', 'prod'], description: 'Choose deployment environment')
+        choice(name: 'DEPLOY_ENV', choices: ['dev', 'stage', 'prod'], description: 'Choose environment')
     }
 
     stages {
         stage('Build') {
             steps {
-                echo "Building for environment: ${params.DEPLOY_ENV}"
+                echo "Building for ${params.DEPLOY_ENV}"
                 bat 'build.bat'
             }
         }
 
         stage('Deploy') {
+            when {
+                expression { params.DEPLOY_ENV == 'prod' }
+            }
             steps {
-                echo "Deploying to ${params.DEPLOY_ENV} environment"
+                echo "🚀 Deploying to Production!"
+            }
+        }
+
+        stage('Wrap Up') {
+            steps {
+                echo "✅ Pipeline finished for ${params.DEPLOY_ENV}"
             }
         }
     }
