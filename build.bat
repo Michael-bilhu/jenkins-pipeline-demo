@@ -1,4 +1,3 @@
 @echo off
-echo Hello from build.bat!
-echo Time is:
-time /t
+echo this is along-running build..
+timeout  /t 180> nul REM = wait 3 minutes (stimulate delay)
