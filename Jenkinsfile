@@ -1,12 +1,6 @@
 pipeline {
     agent any
 
-    stages {
-        stage('Checkout') {
-            steps {
-                git 'https://github.com/Michael-bilhu/jenkins-pipeline-demo'
-            }
-        }
 
         stage('Build') {
             steps {
