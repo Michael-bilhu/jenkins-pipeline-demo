@@ -8,9 +8,10 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-            timeout(time: 2, unit: 'MINUTES') {
-                echo "Building for ${params.DEPLOY_ENV}"
-                bat 'build.bat'
+                timeout(time: 2, unit: 'MINUTES') {
+                    echo "Building for ${params.DEPLOY_ENV}"
+                    bat 'build.bat'
+                }
             }
         }
 
@@ -29,5 +30,4 @@ pipeline {
             }
         }
     }
-}
 }
